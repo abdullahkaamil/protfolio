@@ -1,12 +1,12 @@
 # akaamil.com
 
-Personal portfolio for **Abdullah Kaamil** — Full Stack Engineer & PHP Tech Lead.
+Personal portfolio for **Abdullah Kaamil**, Full Stack Engineer & PHP Tech Lead.
 Static site: plain HTML, CSS, and vanilla JS. No build step, no dependencies.
 
 ## Files
-- `index.html` — all content (hero, about, experience, projects, skills, contact)
-- `styles.css` — dark developer theme
-- `script.js` — nav, role typewriter, scroll reveal, contact form
+- `index.html`: all content (hero, about, experience, projects, skills, contact)
+- `styles.css`: dark developer theme
+- `script.js`: nav, role typewriter, scroll reveal, contact form
 
 ## Run locally
 ```bash
@@ -26,5 +26,5 @@ Drag the folder to **Netlify** / **Vercel**, push to **GitHub Pages**, or upload
 static host. Point `akaamil.com` DNS at the host and you're live.
 
 ## Editing content
-Everything is hand-written in `index.html` — update the timeline, projects, and stats
+Everything is hand-written in `index.html`. Update the timeline, projects, and stats
 directly. Colors live in the `:root` block at the top of `styles.css`.

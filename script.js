@@ -1,12 +1,20 @@
 /* ===========================================================
-   akaamil.com — interactions
+   akaamil.com : interactions
    =========================================================== */
 (function () {
   "use strict";
 
-  /* ---- Sticky nav shadow on scroll ---- */
+  /* ---- Sticky nav shadow + scroll progress ---- */
   const nav = document.getElementById("nav");
-  const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 20);
+  const progress = document.getElementById("scrollProgress");
+  const onScroll = () => {
+    nav.classList.toggle("scrolled", window.scrollY > 20);
+    if (progress) {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
+    }
+  };
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
@@ -96,7 +104,7 @@
         const data = new FormData(form);
         const subject = encodeURIComponent(`Website enquiry from ${data.get("name") || "visitor"}`);
         const body = encodeURIComponent(
-          `${data.get("message") || ""}\n\n— ${data.get("name") || ""} (${data.get("email") || ""})`
+          `${data.get("message") || ""}\n\nFrom: ${data.get("name") || ""} (${data.get("email") || ""})`
         );
         window.location.href = `mailto:akaamil@outlook.com?subject=${subject}&body=${body}`;
         setStatus("Opening your email client…", "ok");
@@ -114,7 +122,7 @@
         });
         if (res.ok) {
           form.reset();
-          setStatus("Thanks — I'll get back to you soon.", "ok");
+          setStatus("Thanks! I'll get back to you soon.", "ok");
         } else {
           setStatus("Something went wrong. Email me directly instead.", "err");
         }
@@ -130,5 +138,30 @@
     status.className = "form__status" + (cls ? " " + cls : "");
   }
 
-  /* ---- Footer year (if ever needed) ---- */
+  /* ---- Scroll-spy: highlight the current section in the nav ---- */
+  const navAnchors = [...document.querySelectorAll(".nav__links a")];
+  const sections = navAnchors
+    .map((a) => document.querySelector(a.getAttribute("href")))
+    .filter(Boolean);
+
+  if ("IntersectionObserver" in window && sections.length) {
+    const spy = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            navAnchors.forEach((a) =>
+              a.classList.toggle("active", a.getAttribute("href") === "#" + id)
+            );
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+    sections.forEach((s) => spy.observe(s));
+  }
+
+  /* ---- Footer year ---- */
+  const year = document.getElementById("year");
+  if (year) year.textContent = String(new Date().getFullYear());
 })();
