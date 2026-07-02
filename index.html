@@ -3,6 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    // Apply saved/system theme before paint to avoid a flash of the wrong theme.
+    (function () {
+      try {
+        var saved = localStorage.getItem("theme");
+        var theme = saved || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        if (theme === "light") document.documentElement.setAttribute("data-theme", "light");
+      } catch (e) {}
+    })();
+  </script>
   <title>Abdullah Kaamil | Full Stack Engineer &amp; PHP Tech Lead</title>
   <meta name="description" content="Abdullah Kaamil, Full Stack Engineer and PHP Tech Lead specializing in fintech, payment systems, Laravel, and AWS cloud solutions. Based in Zoetermeer, Netherlands." />
   <meta name="author" content="Abdullah Kaamil" />
@@ -12,8 +22,10 @@
   <meta property="og:title" content="Abdullah Kaamil | Full Stack Engineer &amp; PHP Tech Lead" />
   <meta property="og:description" content="Fintech &amp; payment systems expert. Laravel, AWS, PCI-DSS. Led 9 developers delivering secure, scalable financial platforms." />
   <meta property="og:url" content="https://akaamil.com" />
-  <meta property="og:image" content="https://akaamil.com/assets/avatar.jpg" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://akaamil.com/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="https://akaamil.com/" />
 
   <!-- Structured data (schema.org / JSON-LD) -->
@@ -137,9 +149,15 @@
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
-      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light / dark theme" title="Toggle theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+        <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -168,6 +186,8 @@
 
         <div class="hero__cta">
           <a class="btn btn--primary" href="#contact">Get in touch</a>
+          <a class="btn btn--ghost" href="assets/Abdullah-Kaamil-CV.pdf" download>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-2px;margin-right:6px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>Download CV</a>
           <a class="btn btn--ghost" href="#projects">View projects</a>
           <a class="btn btn--ghost" href="https://www.linkedin.com/in/abdullahkaamil/" target="_blank" rel="noopener">LinkedIn ↗</a>
           <a class="btn btn--ghost" href="https://github.com/abdullahkaamil" target="_blank" rel="noopener">GitHub ↗</a>
@@ -310,6 +330,11 @@
         <h2 class="section__title"><span class="section__idx">03.</span> Featured Projects</h2>
         <div class="projects">
           <article class="proj proj--feature">
+            <a class="proj__thumb proj__thumb--health" href="https://www.orthoptiek.nl/" target="_blank" rel="noopener" aria-label="Visit orthoptiek.nl">
+              <img src="assets/proj-health.png" alt="" class="proj__shot" onerror="this.remove()" />
+              <span class="proj__browser"><span class="dots"><i></i><i></i><i></i></span><span class="url">orthoptiek.nl</span></span>
+              <span class="proj__wordmark">Orthoptiek</span>
+            </a>
             <div class="proj__top">
               <span class="proj__folder" aria-hidden="true">◆</span>
               <span class="proj__year proj__year--live"><span class="live-dot"></span> Live in production</span>
@@ -331,6 +356,11 @@
           </article>
 
           <article class="proj">
+            <a class="proj__thumb proj__thumb--komsum" href="https://komsumnet.com/" target="_blank" rel="noopener" aria-label="Visit komsumnet.com">
+              <img src="assets/proj-komsum.png" alt="" class="proj__shot" onerror="this.remove()" />
+              <span class="proj__browser"><span class="dots"><i></i><i></i><i></i></span><span class="url">komsumnet.com</span></span>
+              <span class="proj__wordmark">Komşum<em>Net</em></span>
+            </a>
             <div class="proj__top">
               <span class="proj__folder" aria-hidden="true">◆</span>
               <span class="proj__year">2025 – Present</span>
@@ -350,6 +380,10 @@
           </article>
 
           <article class="proj">
+            <div class="proj__thumb proj__thumb--bank">
+              <span class="proj__browser"><span class="dots"><i></i><i></i><i></i></span><span class="url">banking-dashboard</span></span>
+              <span class="proj__wordmark">Open Banking</span>
+            </div>
             <div class="proj__top">
               <span class="proj__folder" aria-hidden="true">◆</span>
               <span class="proj__year">2023 – Present</span>
@@ -367,6 +401,10 @@
           </article>
 
           <article class="proj">
+            <div class="proj__thumb proj__thumb--construction">
+              <span class="proj__browser"><span class="dots"><i></i><i></i><i></i></span><span class="url">construction-erp</span></span>
+              <span class="proj__wordmark">Construction</span>
+            </div>
             <div class="proj__top">
               <span class="proj__folder" aria-hidden="true">◆</span>
               <span class="proj__year">2023 – Present</span>

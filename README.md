@@ -4,9 +4,22 @@ Personal portfolio for **Abdullah Kaamil**, Full Stack Engineer & PHP Tech Lead.
 Static site: plain HTML, CSS, and vanilla JS. No build step, no dependencies.
 
 ## Files
-- `index.html`: all content (hero, about, experience, projects, skills, contact)
-- `styles.css`: dark developer theme
-- `script.js`: nav, role typewriter, scroll reveal, contact form
+- `index.html`: all content (hero, about, experience, projects, skills, contact) + JSON-LD structured data
+- `styles.css`: dark + light theme
+- `script.js`: nav, theme toggle, role typewriter, scroll reveal, scroll-spy, scroll progress, contact form
+- `assets/`: avatar, CV PDF, OG share image, optional project screenshots
+
+## Assets you can swap
+- `assets/avatar.jpg` — hero photo (square, ~500×500)
+- `assets/Abdullah-Kaamil-CV.pdf` — file behind the "Download CV" button
+- `assets/og-image.png` — 1200×630 social share image (regenerate with `scripts`/Pillow if details change)
+- **Project screenshots (optional):** drop `assets/proj-health.png` and `assets/proj-komsum.png`
+  (recommend ~800×500, top-aligned). They automatically replace the gradient placeholders on the
+  cards; if a file is missing, the branded gradient thumbnail shows instead.
+
+## Theme
+Dark by default. A toggle in the nav switches to light and the choice is saved to `localStorage`.
+An inline script in `<head>` applies the saved/system theme before paint to avoid a flash.
 
 ## Run locally
 ```bash
