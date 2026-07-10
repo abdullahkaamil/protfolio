@@ -299,6 +299,7 @@ a { color: var(--accent); text-decoration: none; transition: color 0.2s var(--ea
 .proj__thumb--bank { background: linear-gradient(135deg, #0c2f45, #0b1c28); }
 .proj__thumb--construction { background: linear-gradient(135deg, #3a2913, #201608); }
 .proj__thumb--payfull { background: linear-gradient(135deg, #14432c, #0a2a1c); }
+.proj__thumb--selnotes { background: linear-gradient(135deg, #26308f, #141a4d); }
 
 .proj__browser {
   position: absolute; top: 0; left: 0; right: 0; height: 30px; z-index: 3;
